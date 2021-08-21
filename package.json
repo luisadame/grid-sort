@@ -1,0 +1,12 @@
+{
+  "name": "simple-grid-sort",
+  "version": "1.0.0",
+  "description": "Sort objects in a two dimensional array to compose grids based on a condition",
+  "main": "index.js",
+  "author": "Luis Adame Rodríguez <luis@adame.dev>",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "uvu": "^0.5.1"
+  }
+}
