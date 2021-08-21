@@ -1,5 +1,5 @@
 {
-  "name": "simple-grid-sort",
+  "name": "grid-sort",
   "version": "1.0.0",
   "description": "Sort objects in a two dimensional array to compose grids based on a condition",
   "main": "index.js",
