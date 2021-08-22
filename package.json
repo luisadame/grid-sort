@@ -1,6 +1,6 @@
 {
   "name": "grid-sort",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Sort objects in a two dimensional array to compose grids based on a condition",
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
