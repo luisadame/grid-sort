@@ -23,6 +23,7 @@
     "strictPropertyInitialization": true,
     "skipLibCheck": true,
     "target": "ES2015",
+    "sourceMap": true
   },
   "include": ["src"]
 }

@@ -1,6 +1,6 @@
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-import type { Buckets } from "../lib/gridSort.js";
+import type { Buckets } from "../src/gridSort.js";
 import {
   buildGridFromBuckets,
   getFillableItem,
@@ -8,7 +8,7 @@ import {
   gridSort,
   groupItemsByValue,
   rowsAreEqual,
-} from "../lib/gridSort.js";
+} from "../src/gridSort.js";
 
 test("sorts object keys numerically in descending order", () => {
   const buckets = { 1: [1, 1, 1], 2: [2, 2], 3: [3, 3] };
