@@ -12,7 +12,7 @@ const itemsInBucket = <T extends unknown>(
 
 const rowQuantity = <T extends object | number>(
   row: T[],
-  accessor: T extends object ? Accessor<T> : undefined
+  accessor?: T extends object ? Accessor<T> : undefined
 ) =>
   row.reduce((acc, item) => {
     if (accessor && typeof item === "object") {
@@ -38,7 +38,7 @@ export function calculateItemsLeft<T>(buckets: Buckets<T>) {
 export function rowsAreEqual<T extends object | number>(
   rowA: T[],
   rowB: T[],
-  accessor: T extends object ? Accessor<T> : undefined
+  accessor?: T extends object ? Accessor<T> : undefined
 ) {
   return rowA.every((value, index) => {
     let itemA = value;
@@ -54,7 +54,7 @@ export function rowsAreEqual<T extends object | number>(
 
 export function groupItemsByValue<T extends object | number>(
   items: T[],
-  accessor: T extends object ? Accessor<T> : undefined
+  accessor?: T extends object ? Accessor<T> : undefined
 ) {
   const groups: Buckets<T> = {};
   for (const item of items) {
@@ -101,7 +101,7 @@ export function buildGridFromBuckets<T extends object | number>({
 }: {
   buckets: Buckets<T>;
   columns: number;
-  accessor: T extends object ? Accessor<T> : undefined;
+  accessor?: T extends object ? Accessor<T> : undefined;
 }) {
   const grid = [];
   let itemsLeft: number;
@@ -141,7 +141,7 @@ export function gridSort<T extends object | number>({
 }: {
   items: T[];
   columns?: number;
-  accessor: T extends object ? Accessor<T> : never;
+  accessor?: T extends object ? Accessor<T> : never;
 }) {
   const buckets = groupItemsByValue(items, accessor);
   return buildGridFromBuckets({ buckets, columns, accessor });
