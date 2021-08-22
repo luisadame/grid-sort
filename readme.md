@@ -1,5 +1,17 @@
 # Grid sort
 
+<div>
+  <a href="https://npmjs.org/package/grid-sort">
+    <img src="https://badgen.net/npm/v/grid-sort" alt="version" />
+  </a>
+  <a href="https://github.com/luisadame/grid-sort/tests">
+    <img src="https://img.shields.io/codecov/c/github/luisadame/grid-sort" alt="coverage" />
+  </a>
+  <a href="https://packagephobia.now.sh/result?p=grid-sort">
+    <img src="https://packagephobia.now.sh/badge?p=grid-sort" alt="install size" />
+  </a>
+</div>
+
 Sort array of objects or numbers into a grid where items are sorted from biggest to lowest
 
 ## Introduction
