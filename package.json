@@ -2,14 +2,18 @@
   "name": "grid-sort",
   "version": "1.0.0",
   "description": "Sort objects in a two dimensional array to compose grids based on a condition",
-  "main": "index.js",
+  "exports": "./lib/index.js",
   "author": "Luis Adame Rodríguez <luis@adame.dev>",
   "license": "MIT",
   "type": "module",
   "devDependencies": {
+    "typescript": "^4.3.5",
     "uvu": "^0.5.1"
   },
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "scripts": {
-    "test": "node tests"
+    "tsc": "tsc"
   }
 }
