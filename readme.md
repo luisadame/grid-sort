@@ -4,7 +4,7 @@
   <a href="https://npmjs.org/package/grid-sort">
     <img src="https://badgen.net/npm/v/grid-sort" alt="version" />
   </a>
-  <a href="https://github.com/luisadame/grid-sort/tests">
+  <a href="https://github.com/luisadame/grid-sort/tree/main/tests">
     <img src="https://img.shields.io/codecov/c/github/luisadame/grid-sort" alt="coverage" />
   </a>
   <a href="https://packagephobia.now.sh/result?p=grid-sort">

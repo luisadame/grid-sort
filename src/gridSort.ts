@@ -20,11 +20,7 @@ const rowQuantity = <T extends object | number>(
       return acc + value;
     }
 
-    if (typeof item === "number") {
-      return acc + item;
-    }
-
-    return acc;
+    return acc + Number(item);
   }, 0);
 
 export function getSortedKeys<T>(buckets: Buckets<T>) {
@@ -58,15 +54,13 @@ export function groupItemsByValue<T extends object | number>(
 ) {
   const groups: Buckets<T> = {};
   for (const item of items) {
-    let key: number | undefined;
+    let key: number;
 
     if (accessor && typeof item === "object") {
       key = accessor(item);
-    } else if (typeof item === "number") {
-      key = item;
+    } else {
+      key = Number(item);
     }
-
-    if (key === undefined) continue;
 
     const group = groups[key];
 
@@ -115,11 +109,10 @@ export function buildGridFromBuckets<T extends object | number>({
       rowQuantity(row, accessor) < columns &&
       itemsLeft >= 1
     ) {
-      const bucket = buckets[key];
-      if (!bucket) continue;
-      const item = bucket.shift();
-      if (!item) break;
-      row.push(item);
+      const item = buckets[key]?.shift();
+      if (item) {
+        row.push(item);
+      }
     }
 
     // randomize current row if previous row has same layout

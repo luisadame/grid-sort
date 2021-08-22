@@ -1,11 +1,9 @@
 import { test } from "uvu";
 import * as assert from "uvu/assert";
-import type { Buckets } from "../src/gridSort.js";
 import {
   buildGridFromBuckets,
   getFillableItem,
   getSortedKeys,
-  gridSort,
   groupItemsByValue,
   rowsAreEqual,
 } from "../src/gridSort.js";
@@ -55,11 +53,7 @@ test("rows equality", () => {
 });
 
 test("it sorts bucket of numbers", () => {
-  const buckets = {
-    1: [1, 1, 1, 1, 1],
-    2: [2, 2],
-    3: [3, 3],
-  } as Buckets<number>;
+  const buckets = groupItemsByValue([1, 1, 1, 1, 1, 2, 2, 3, 3]);
   const sorted = buildGridFromBuckets({
     buckets,
     columns: 4,
@@ -151,40 +145,6 @@ test("it sorts bucket of objects with different columns", () => {
   const itemsByValue = groupItemsByValue(items, accessor);
   const sorted = buildGridFromBuckets({
     buckets: itemsByValue,
-    columns: 5,
-    accessor,
-  });
-  const expected = [
-    [
-      { id: "1", ratio: 3 },
-      { id: "3", ratio: 2 },
-    ],
-    [
-      { id: "4", ratio: 2 },
-      { id: "8", ratio: 3 },
-    ],
-    [
-      { id: "2", ratio: 1 },
-      { id: "5", ratio: 1 },
-      { id: "7", ratio: 1 },
-    ],
-  ];
-  assert.equal(sorted, expected);
-});
-
-test("it sorts an array of items into a grid", () => {
-  const items = [
-    { id: "1", ratio: 3 },
-    { id: "2", ratio: 1 },
-    { id: "3", ratio: 2 },
-    { id: "4", ratio: 2 },
-    { id: "5", ratio: 1 },
-    { id: "7", ratio: 1 },
-    { id: "8", ratio: 3 },
-  ];
-  const accessor = (item: typeof items[number]) => item.ratio;
-  const sorted = gridSort({
-    items,
     columns: 5,
     accessor,
   });
