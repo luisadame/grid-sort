@@ -27,8 +27,19 @@ export function getSortedKeys<T>(buckets: Buckets<T>) {
   return keysOf(buckets).sort((a, z) => z - a);
 }
 
-export function calculateItemsLeft<T>(buckets: Buckets<T>) {
-  return Object.values(buckets).reduce((acc, bucket) => acc + bucket.length, 0);
+export function calculateItemsLeft<T>(buckets: Buckets<T>, columns: number, accessor?: T extends object ? Accessor<T> : undefined) {
+  return Object.values(buckets)
+    .reduce((acc, bucket) => {
+      const bucketQuantity = bucket.map(value => {
+        if (accessor && typeof value === 'object') {
+          return accessor(value);
+        }
+
+        return value;
+      }).filter(value => value <= columns).length;
+
+      return acc + bucketQuantity;
+    }, 0);
 }
 
 export function rowsAreEqual<T extends object | number>(
@@ -97,10 +108,13 @@ export function buildGridFromBuckets<T extends object | number>({
   columns: number;
   accessor?: T extends object ? Accessor<T> : undefined;
 }) {
-  const grid = [];
+  const grid: T[][] = [];
+
+  if (columns <= 0) return grid;
+
   let itemsLeft: number;
 
-  while ((itemsLeft = calculateItemsLeft(buckets)) > 0) {
+  while ((itemsLeft = calculateItemsLeft(buckets, columns, accessor)) > 0) {
     const row: T[] = [];
     let key: number;
 

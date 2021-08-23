@@ -1,4 +1,4 @@
-import { test } from "uvu";
+import { test, suite } from "uvu";
 import * as assert from "uvu/assert";
 import {
   buildGridFromBuckets,
@@ -131,7 +131,11 @@ test("it sorts bucket of objects", () => {
   assert.equal(sorted, expected);
 });
 
-test("it sorts bucket of objects with different columns", () => {
+test.run();
+
+const ColumnSuite = suite('Columns Suite');
+
+ColumnSuite("it sorts bucket of objects with more columns", () => {
   const items = [
     { id: "1", ratio: 3 },
     { id: "2", ratio: 1 },
@@ -166,4 +170,129 @@ test("it sorts bucket of objects with different columns", () => {
   assert.equal(sorted, expected);
 });
 
-test.run();
+ColumnSuite("it sorts bucket of objects with less columns than items", () => {
+  const items = [
+    { id: "1", ratio: 3 },
+    { id: "2", ratio: 1 },
+    { id: "3", ratio: 2 },
+    { id: "4", ratio: 2 },
+    { id: "5", ratio: 1 },
+    { id: "7", ratio: 1 },
+    { id: "8", ratio: 3 },
+  ];
+  const accessor = (item: typeof items[number]) => item.ratio;
+  const itemsByValue = groupItemsByValue(items, accessor);
+  const sorted = buildGridFromBuckets({
+    buckets: itemsByValue,
+    columns: 3,
+    accessor,
+  });
+  const expected = [
+    [
+      { id: "1", ratio: 3 },
+    ],
+    [
+      { id: "8", ratio: 3 },
+    ],
+    [
+      { id: "3", ratio: 2 },
+      { id: "2", ratio: 1 },
+    ],
+    [
+      { id: "5", ratio: 1 },
+      { id: "4", ratio: 2 },
+    ],
+    [
+      { id: "7", ratio: 1 },
+    ]
+  ];
+  assert.equal(sorted, expected);
+});
+
+ColumnSuite("it sorts bucket of objects with less columns than biggest object", () => {
+  const items = [
+    { id: "1", ratio: 3 },
+    { id: "2", ratio: 1 },
+    { id: "3", ratio: 2 },
+    { id: "4", ratio: 2 },
+    { id: "5", ratio: 1 },
+    { id: "7", ratio: 1 },
+    { id: "8", ratio: 3 },
+  ];
+  const accessor = (item: typeof items[number]) => item.ratio;
+  const itemsByValue = groupItemsByValue(items, accessor);
+  const sorted = buildGridFromBuckets({
+    buckets: itemsByValue,
+    columns: 2,
+    accessor,
+  });
+  const expected = [
+    [
+      { id: "3", ratio: 2 },
+    ],
+    [
+      { id: "4", ratio: 2 },
+    ],
+    [
+      { id: "2", ratio: 1 },
+      { id: "5", ratio: 1 },
+    ],
+    [
+      { id: "7", ratio: 1 },
+    ]
+  ];
+  assert.equal(sorted, expected);
+});
+
+ColumnSuite("it sorts bucket of objects with a single column", () => {
+  const items = [
+    { id: "1", ratio: 3 },
+    { id: "2", ratio: 1 },
+    { id: "3", ratio: 2 },
+    { id: "4", ratio: 2 },
+    { id: "5", ratio: 1 },
+    { id: "7", ratio: 1 },
+    { id: "8", ratio: 3 },
+  ];
+  const accessor = (item: typeof items[number]) => item.ratio;
+  const itemsByValue = groupItemsByValue(items, accessor);
+  const sorted = buildGridFromBuckets({
+    buckets: itemsByValue,
+    columns: 1,
+    accessor,
+  });
+  const expected = [
+    [
+      { id: "2", ratio: 1 },
+    ],
+    [
+      { id: "5", ratio: 1 },
+    ],
+    [
+      { id: "7", ratio: 1 },
+    ]
+  ];
+  assert.equal(sorted, expected);
+});
+
+ColumnSuite("it sorts bucket of objects with no columns", () => {
+  const items = [
+    { id: "1", ratio: 3 },
+    { id: "2", ratio: 1 },
+    { id: "3", ratio: 2 },
+    { id: "4", ratio: 2 },
+    { id: "5", ratio: 1 },
+    { id: "7", ratio: 1 },
+    { id: "8", ratio: 3 },
+  ];
+  const accessor = (item: typeof items[number]) => item.ratio;
+  const itemsByValue = groupItemsByValue(items, accessor);
+  const sorted = buildGridFromBuckets({
+    buckets: itemsByValue,
+    columns: 0,
+    accessor,
+  });
+  assert.equal(sorted, []);
+});
+
+ColumnSuite.run();
