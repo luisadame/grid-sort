@@ -121,3 +121,28 @@ const sortedItems = gridSort({ items, accessor });
   ]
 */
 ```
+
+### Options
+
+The exported function `gridSort` accepts an object that has three properties which represent required data or options.
+
+#### items (required)
+
+It represents the list of items you want to sort
+
+#### accessor
+
+If you give an array of objects as items you'll have to pass this option too, as I described above, this option is necessary to obtain a number that represents the number of columns an item in your list might take
+
+#### columns
+
+Defines the number of columns your grid would have
+
+## Contributions
+
+You are more than welcome to report any issues or suggest new features.
+Just create an issue with the bug or enhancement label and we'll discuss further actions. Thank you in advance for even considering contributing to this.
+
+## License
+
+MIT
