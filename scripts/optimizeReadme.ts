@@ -9,7 +9,7 @@ async function removeImages(file: string) {
     const lines = file.split('\n');
 
     lines.forEach((line, index, array) => {
-        if (line.includes('<img') && line.includes('static/')) {
+        if (line.includes('<img') && line.includes('/static/')) {
             if (array[index - 1]?.includes('div') && array[index + 1]?.includes('div')) {
                 array.splice(index - 1, 3);
             } else {

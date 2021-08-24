@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-  <img src="static/grid-sort.png" alt="grid sort" height="150" />
+  <img src="/static/grid-sort.png" alt="grid sort" height="150" />
   <h1>Grid sort</h1>
   <p>Sort array of objects or numbers into a grid where items are sorted from biggest to lowest</p>
   <a href="https://npmjs.org/package/grid-sort">
@@ -27,7 +27,7 @@ To better understand the case above let's introduce an example.
 Imagine a list of numbers which represent the columns they would take in a grid of four columns:
 
 <div align="center">
-  <img alt="Unsorted list of rectangles that contain a number representing the column space" src="static/unsorted-grid.png" />
+  <img alt="Unsorted list of rectangles that contain a number representing the column space" src="/static/unsorted-grid.png" />
 </div>
 
 ```javascript
@@ -43,7 +43,7 @@ Therefore to have them sorted for a grid the sorting algorithm should respect a 
 4. If two rows are visually the same swap position of items to create a better space distribution
 
 <div align="center">
-  <img alt="Sorted list of rectangles that contain a number representing the column space they take on a grid, and they are layed out based on the algorithm above" src="static/sorted-grid.png"/>
+  <img alt="Sorted list of rectangles that contain a number representing the column space they take on a grid, and they are layed out based on the algorithm above" src="/static/sorted-grid.png"/>
 </div>
 
 ```javascript
