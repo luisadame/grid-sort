@@ -8,7 +8,21 @@
   "author": "Luis Adame Rodríguez <luis@adame.dev>",
   "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisadame/grid-sort.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luisadame/grid-sort/issues"
+  },
+  "homepage": "https://github.com/luisadame/grid-sort",
+  "keywords": [
+    "grid",
+    "sorting",
+    "esm"
+  ],
   "devDependencies": {
+    "@types/node": "^16.7.1",
     "c8": "^7.8.0",
     "source-map-support": "^0.5.19",
     "ts-node": "^10.2.1",
@@ -22,6 +36,7 @@
     "check-coverage": "c8 yarn test",
     "report-coverage": "c8 report --reporter text-lcov > coverage.lcov",
     "test": "node --loader ts-node/esm node_modules/uvu/bin.js ./tests",
-    "tsc": "tsc"
+    "tsc": "tsc",
+    "build-readme": "node --loader ts-node/esm scripts/optimizeReadme.ts"
   }
 }
